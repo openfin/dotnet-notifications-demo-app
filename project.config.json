@@ -1,0 +1,9 @@
+{
+    "PORT": 8333,
+    "NAME": "OF Project Template",
+    "TITLE": "Project Template",
+    "CDN_LOCATION": "localhost",
+    "HOST": "localhost",
+    "BACKEND": "localhost",
+    "BACKEND_ORG": "openfin"
+}
