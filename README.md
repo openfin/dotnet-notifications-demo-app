@@ -1,4 +1,4 @@
-# OpenFin Notifications Service .NET Client
+# OpenFin Notifications Service .NET Client Demo
 
 The .NET Notifications Service client provides an interface for the Notifications Service allowing notifications to be manipulated from .NET Applications.
 
