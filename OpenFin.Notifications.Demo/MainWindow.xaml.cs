@@ -126,8 +126,9 @@ namespace OpenFin.Notifications.Demo
                     },
                     Buttons = NotificationBodyService.GenerateButtons((int)btnCount.Value, ctaIx),
                     NotificationIndicator = new NotificationIndicator { IndicatorText = tbIndicatorText.Text, IndicatorType = getSelectedIndicatorType() },
-                    IsStickyNotification = cbSticky.IsChecked.Value
-                });
+                    IsStickyNotification = cbSticky.IsChecked.Value,
+                    CustomData = new Dictionary<string, object>()
+                }) ;
             }
             catch (Exception ex)
             {
@@ -168,7 +169,7 @@ namespace OpenFin.Notifications.Demo
             NotificationClient.ClearNotificationAsync(EXPIRING_NOTIFICATION_ID);
         }
 
-        private void CreateExpiring_Click(object sender, RoutedEventArgs e)
+        private async void CreateExpiring_Click(object sender, RoutedEventArgs e)
         {
             var options = new NotificationOptions
             {
@@ -178,17 +179,18 @@ namespace OpenFin.Notifications.Demo
                 Buttons = new[]
             {
                     new ButtonOptions() { Title = "Button1", IconUrl = "https://openfin.co/favicon-32x32.png" },
-                    new ButtonOptions() { Title = "Button2"}
+                    new ButtonOptions() { Title = "Button2", IconUrl = "https://openfin.co/favicon-32x32.png"}
                 },
                 Icon = "https://openfin.co/favicon-32x32.png",
                 Expires = DateTime.Now.AddSeconds(10),
                 OnNotificationExpired = new Dictionary<string, object>
                 {
                     { "foo" , "bar" }
-                }
+                },
+                CustomData = new Dictionary<string, object>()
             };
 
-            NotificationClient.CreateNotificationAsync(EXPIRING_NOTIFICATION_ID, options);
+            await NotificationClient.CreateNotificationAsync(EXPIRING_NOTIFICATION_ID, options);
         }
 
         private void btnCount_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

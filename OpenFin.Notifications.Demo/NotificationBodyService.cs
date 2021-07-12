@@ -55,7 +55,12 @@ namespace OpenFin.Notifications.Demo
 
         private static string getBodyContentByExtension(string ext)
         {
-            return File.ReadAllText($"body.{ext}");
+            string path = System.Reflection.Assembly.GetExecutingAssembly().Location;
+
+            //once you have the path you get the directory with:
+            var directory = System.IO.Path.GetDirectoryName(path);
+            var contentPath = Path.Combine(directory, $"body.{ext}");
+            return File.ReadAllText(contentPath);
         }
     }
 }
